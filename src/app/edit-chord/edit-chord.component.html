@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Edytuj akord</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group">
+      <button class="btn btn-sm btn-outline-secondary" (click)="goBack()">Go Back</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="pricing-header form-block mx-auto">
+      <form [formGroup]="editForm" (ngSubmit)="updateForm()" novalidate>
+        <div class="row">
+          <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label>Symbol</label>
+                <input type="text" formControlName="symbol" class="form-control" required>
+                <p *ngIf="symbol.touched && symbol.invalid" class="error"><sup>*</sup>Proszę wprowadzić prawidłowy znak np. D major
+                </p>
+                <p *ngIf="symbol.errors?.minlength" class="error"><sup>*</sup>Powinen mieć co najmniej dwa znaki</p>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label>Nazwa</label>
+                <input type="text" formControlName="name" class="form-control">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label>Opis</label>
+                <input type="text" formControlName="description" class="form-control" required>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label>Nauczony</label>
+                <input type="checkbox" formControlName="learned" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-group text-right">
+              <button type="submit" class="btn btn-success btn-block">
+                Zaktualizuj Akord
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

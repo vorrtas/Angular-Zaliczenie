@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">Lista akordów</h2>
+    <a routerLink="/add-chord" class="btn btn-success" *ngIf="hideWhenNoChord">
+    Dodaj akord
+    </a>
+</div>
+
+<div class="pricing-header mx-auto">
+    <div class="no-data text-center" *ngIf="noData">
+        <p class="nodata-msg">Nie dodano akordów</p>
+        <a routerLink="/add-chord" class="btn btn-success">
+        Dodaj akord
+        </a>
+  </div>
+  <div class="table-responsive" *ngIf="hideWhenNoChord">
+        <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Opis</th>
+                <th scope="col">Nauczony</th>
+                <th class="text-center" scope="col">Edytuj</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let chord of Chord | paginate: { itemsPerPage: 7, currentPage: p }; let i = index;">
+                <th scope="row">{{chord.$key}}</th>
+                <td>{{chord.symbol}}</td>
+                <td>{{chord.name}}</td>
+                <td>{{chord.description}}</td>
+                <td><p *ngIf="chord.learned">✓</p></td>
+                <td class="text-center action-block">
+                    <span class="mr-2 btn btn-outline-primary btn-sm" routerLink="/edit-chord/{{chord.$key}}">Edytuj</span> 
+                    <span class="btn btn-outline-danger btn-sm" (click)="deleteChord(chord)">Usuń</span>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+  </div>
+  <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls>
+</div>

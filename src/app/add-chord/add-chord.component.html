@@ -1,0 +1,43 @@
+<div class="pt-3 pb-2 mb-3 border-bottom">
+  <h2 class="h2">Dodaj chywt gitarowy</h2>
+</div>
+
+<form [formGroup]="chordForm" (ngSubmit)="submitChordData()" novalidate>
+  <div class="row">
+    <div class="col-lg-5 col-md-12 col-sm-12">
+      <div class="row">
+
+      <div class="col-md-12 mb-3">
+        <label>Symbol</label>
+        <input type="text" formControlName="symbol" class="form-control" required>
+        <p *ngIf="symbol.touched && symbol.invalid" class="error"><sup>*</sup>Proszę wprowadzić prawidłowy znak np. D major
+        </p>
+        <p *ngIf="symbol.errors?.minlength" class="error"><sup>*</sup>Powinen mieć co najmniej dwa znaki</p>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <label>Nazwa</label>
+        <input type="text" formControlName="name" class="form-control">
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <label>Opis</label>
+        <input type="text" formControlName="description" class="form-control" required>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <label>Nauczony</label>
+        <input type="checkbox" formControlName="learned" class="form-control" required>
+      </div>
+
+    </div>
+    <div class="form-group text-right">
+      <button type="button" class="btn btn-secondary gap-right" (click)="ResetForm()">Reset</button>
+      <button type="submit" class="btn btn-success">Dodaj Akord</button>
+    </div>
+  </div>
+</div>
+</form>
